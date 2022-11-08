@@ -39,13 +39,13 @@ fun main() {
                     val shadeStyle = shadeStyle {
                         fragmentTransform = """
                         
-                        vec2 o = vec2(p_time, p_time) * 0.01;
+                        vec2 o = vec2(p_time, p_time);
                         x_fill = texture(p_texture, mod(o + va_texCoord0.xy, vec2(1.0)));
                         
                     """.trimIndent()
 
                         parameter("texture", texture)
-                        parameter("time", seconds)
+                        parameter("time", mouse.position.x / width)
                     }
 
                     drawer.shadeStyle = shadeStyle

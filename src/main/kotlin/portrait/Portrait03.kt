@@ -38,7 +38,6 @@ fun main() {
                     drawer.clear(ColorRGBa.TRANSPARENT)
                     val shadeStyle = shadeStyle {
                         fragmentTransform = """
-                        
                         x_fill = texture(p_texture, va_texCoord0.xy);
                         x_fill.rgb *= cos(va_position.y*20.0 + p_time) * 0.5 + 0.5;
                     """.trimIndent()

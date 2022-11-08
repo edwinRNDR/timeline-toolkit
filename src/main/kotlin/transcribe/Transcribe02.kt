@@ -1,10 +1,8 @@
 package transcribe
 
-import AudioStream
-import bass.initBass
 import library.readSRT
 import org.openrndr.application
-import org.openrndr.extra.parameters.description
+import org.openrndr.extra.minim.minim
 import org.openrndr.shape.Rectangle
 import org.openrndr.writer
 import java.io.File
@@ -12,19 +10,20 @@ import java.io.File
 fun main() {
     application {
         program {
-            initBass()
-            val sound = AudioStream("data/transcribe/8F5P9NBgH4s.mp3", "speech")
-            sound.play(1.0, 0, context = dispatcher)
+            val minim = minim()
+            val sound = minim.loadFile("data/transcribe/8F5P9NBgH4s.mp3")
+            sound.loop()
 
             mouse.dragged.listen {
-                val duration = sound.channel!!.getDuration()
+                val duration = sound.length()
                 val relx = it.position.x / width
-                sound.channel!!.setPosition(relx * duration)
+                sound.cue((relx * duration).toInt())
+                //sound.channel!!.setPosition(relx * duration)
             }
 
             val transcript = readSRT(File("data/transcribe/8F5P9NBgH4s.srt"))
             extend {
-                val time = sound.channel!!.getPosition()
+                val time = sound.position() / 1000.0
                 val active =  transcript.filter {
                     it.startTime <= time && it.endTime > time
                 }

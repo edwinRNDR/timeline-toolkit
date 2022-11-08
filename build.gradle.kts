@@ -34,7 +34,7 @@ val orxFeatures = setOf<String>(
 //  "orx-kotlin-parser",
 //  "orx-mesh-generators",
 //  "orx-midi",
-//  "orx-minim",
+  "orx-minim",
 //  "orx-no-clear",
     "orx-noise",
   "orx-obj-loader",
@@ -95,7 +95,7 @@ plugins {
 
 repositories {
     mavenCentral()
-    maven(url = "file:./m2-repo/")
+//    maven(url = "file:./m2-repo/")
 }
 
 dependencies {
@@ -260,8 +260,8 @@ class Openrndr {
             maven(url = "https://maven.openrndr.org")
         }
         dependencies {
-            implementation("org.nativebass:nativebass:1.1.2")
-            runtimeOnly("org.nativebass:nativebass-$bassOs:1.1.2")
+//            implementation("org.nativebass:nativebass:1.1.2")
+//            runtimeOnly("org.nativebass:nativebass-$bassOs:1.1.2")
 
             runtimeOnly(openrndr("gl3"))
             runtimeOnly(openrndrNatives("gl3"))
