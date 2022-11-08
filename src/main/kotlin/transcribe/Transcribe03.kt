@@ -17,7 +17,7 @@ fun main() {
         }
         program {
             val minim = minim()
-            val sound = minim.loadFile("data/transcribe/8F5P9NBgH4s.mp3")
+            val sound = minim.loadFile("data/transcribe/constant.wav")
             sound.loop()
 
             mouse.dragged.listen {
